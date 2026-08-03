@@ -33,7 +33,7 @@ Url = https://github.com/AksharLeo/pkgbuilds
 
 After saving the configuration file, synchronize the databases:
 ```bash
-paru -Sya
+paru -Sy
 ```
 
 You can now seamlessly install any package from this repository! For example:
