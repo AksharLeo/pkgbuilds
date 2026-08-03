@@ -1,7 +1,7 @@
 pkgbase = hydra-launcher-selfhosted-bin
 	pkgdesc = Hydra Launcher (Fork with selfhosted backend support) - An open-source gaming platform
-	pkgver = 4.0.6_rev1
-	pkgrel = 2
+	pkgver = 4.0.6_rev2
+	pkgrel = 1
 	url = https://github.com/AksharLeo/hydra
 	arch = x86_64
 	license = MIT
@@ -35,9 +35,9 @@ pkgbase = hydra-launcher-selfhosted-bin
 	depends = zlib
 	provides = hydra-launcher-selfhosted
 	options = !strip
-	source = https://github.com/AksharLeo/hydra/releases/download/v4.0.6-rev1/hydralauncher_4.0.6-rev1_amd64.deb
-	source = hydra-launcher-selfhosted-bin-LICENSE::https://github.com/AksharLeo/hydra/raw/refs/tags/v4.0.6-rev1/LICENSE
-	sha256sums = 151cae4b27f5ef6a52700ed58b6e4dc2a81094483d563063b0ff0fca6ad6af2f
+	source = https://github.com/AksharLeo/hydra/releases/download/v4.0.6-rev2/hydralauncher_4.0.6-rev2_amd64.deb
+	source = hydra-launcher-selfhosted-bin-LICENSE::https://github.com/AksharLeo/hydra/raw/refs/tags/v4.0.6-rev2/LICENSE
+	sha256sums = 6031940544fca61a9fcafbfd976b30b86f47d6fec3229a553acc449d0c31378f
 	sha256sums = 32619612c2e0223e86c4908747ec14bef64c3c423fee80910c1aa944769b66f9
 
 pkgname = hydra-launcher-selfhosted-bin
