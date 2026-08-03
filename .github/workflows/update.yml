@@ -51,6 +51,12 @@ jobs:
                 updpkgsums
                 makepkg --printsrcinfo > .SRCINFO
                 
+                true_version=\$(awk -F ' = ' '/^\s*pkgver =/ {print \$2; exit}' .SRCINFO)
+                if [ ! -z \"\$true_version\" ]; then
+                  sed -i \"s/^pkgver=.*/pkgver=\$true_version/\" PKGBUILD
+                  new_version=\$true_version
+                fi
+                
                 git add PKGBUILD .SRCINFO
                 git commit -m \"upg(\$pkg): update to \$new_version\"
                 
