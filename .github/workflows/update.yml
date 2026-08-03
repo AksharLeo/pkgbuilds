@@ -30,9 +30,6 @@ jobs:
           passwd -d builduser
           echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
           
-          # Give builduser ownership so it can run makepkg
-          chown -R builduser:builduser .
-          
           cd $GITHUB_WORKSPACE
           for pkg in */ ; do
             pkg=${pkg%/}
@@ -45,22 +42,24 @@ jobs:
               if [ ! -z "$result" ]; then
                 new_version=$(echo "$result" | jq -r '.version')
                 
-                # If this package uses the AUR backend, nvchecker includes the -pkgrel.
-                # We want to strip the -pkgrel off automatically so it doesn't break future packages!
                 if grep -q 'source = "aur"' .nvchecker.toml; then
                   new_version=${new_version%-*}
                 fi
                 
-                # Pacman forbids hyphens in pkgver. Replace them with underscores.
                 safe_version=${new_version//-/_}
                 echo "Updating $pkg to $safe_version"
                 
                 sed -i "s/^pkgver=.*/pkgver=$safe_version/" PKGBUILD
                 sed -i "s/^pkgrel=.*/pkgrel=1/" PKGBUILD
                 
+                # Give builduser ownership of just this package folder so it can build
+                chown -R builduser:builduser $GITHUB_WORKSPACE/$pkg
+                
                 # Only run the arch-specific build tools as builduser!
-                su - builduser -c "git config --global --add safe.directory '*' && cd $GITHUB_WORKSPACE/$pkg && updpkgsums && makepkg --printsrcinfo > .SRCINFO"
-
+                su - builduser -c "cd $GITHUB_WORKSPACE/$pkg && updpkgsums && makepkg --printsrcinfo > .SRCINFO"
+                
+                # Revert ownership of the package folder back to root
+                chown -R root:root $GITHUB_WORKSPACE/$pkg
                 
                 true_version=$(awk -F ' = ' '/^\s*pkgver =/ {print $2; exit}' .SRCINFO)
                 if [ ! -z "$true_version" ]; then
@@ -76,9 +75,6 @@ jobs:
               cd ..
             fi
           done
-          
-          # Revert ownership so create-pull-request is happy
-          chown -R root:root .
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
