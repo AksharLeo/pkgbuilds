@@ -3,7 +3,7 @@
 
 pkgname=sidra-bin
 pkgver=0.4.0
-pkgrel=1
+pkgrel=2
 pkgdesc="An elegant Apple Music desktop client for Linux. No frippery, just quality."
 arch=('x86_64')
 url="https://github.com/wimpysworld/sidra"
@@ -137,6 +137,7 @@ DESKTOP
 
     # ── Fix permissions ────────────────────────────────────────────────────────
     chmod -R u=rwX,go=rX "${pkgdir}/opt/sidra/"
+    chmod -R u=rwX,go=rX "${pkgdir}/usr/" 2>/dev/null || true
     chmod 755 "${pkgdir}/opt/sidra/sidra"
     # The chrome-sandbox binary must be owned by root and setuid
     if [[ -f "${pkgdir}/opt/sidra/chrome-sandbox" ]]; then
