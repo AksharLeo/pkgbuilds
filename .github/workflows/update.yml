@@ -85,6 +85,10 @@ jobs:
               cd ..
             fi
           done
+          
+          # Clean up all downloaded tarballs and source files so create-pull-request
+          # doesn't mistakenly try to commit them and hit the 100MB size limit.
+          git clean -dfx
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
