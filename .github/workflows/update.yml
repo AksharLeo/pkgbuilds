@@ -11,12 +11,12 @@ jobs:
     container:
       image: archlinux:base-devel
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm git jq nvchecker pacman-contrib
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Configure Git
         run: |
