@@ -59,7 +59,8 @@ jobs:
                 sed -i "s/^pkgrel=.*/pkgrel=1/" PKGBUILD
                 
                 # Only run the arch-specific build tools as builduser!
-                su - builduser -c "cd $GITHUB_WORKSPACE/$pkg && updpkgsums && makepkg --printsrcinfo > .SRCINFO"
+                su - builduser -c "git config --global --add safe.directory '*' && cd $GITHUB_WORKSPACE/$pkg && updpkgsums && makepkg --printsrcinfo > .SRCINFO"
+
                 
                 true_version=$(awk -F ' = ' '/^\s*pkgver =/ {print $2; exit}' .SRCINFO)
                 if [ ! -z "$true_version" ]; then
