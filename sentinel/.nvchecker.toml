@@ -1,5 +1,0 @@
-[sentinel]
-source = "github"
-github = "atayozcan/sentinel"
-use_max_tag = true
-prefix = "v"
