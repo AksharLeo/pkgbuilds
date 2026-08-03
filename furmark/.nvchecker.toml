@@ -1,3 +1,4 @@
 [furmark]
 source = "aur"
 aur = "furmark"
+strip_release = true

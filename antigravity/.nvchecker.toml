@@ -1,3 +1,4 @@
 [antigravity]
 source = "aur"
 aur = "antigravity"
+strip_release = true

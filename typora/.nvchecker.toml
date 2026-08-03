@@ -1,3 +1,4 @@
 [typora]
 source = "aur"
 aur = "typora"
+strip_release = true
