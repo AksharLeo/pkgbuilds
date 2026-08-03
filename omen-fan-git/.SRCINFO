@@ -1,0 +1,17 @@
+pkgbase = omen-fan-git
+	pkgdesc = Utility and daemon to control fans in HP Omen laptops
+	pkgver = r1.0000000
+	pkgrel = 1
+	url = https://github.com/AksharLeo/omen-fan
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = python
+	depends = python-click
+	depends = python-tomlkit
+	depends = python-click-aliases
+	backup = etc/omen-fan/config.toml
+	source = git+https://github.com/AksharLeo/omen-fan.git
+	sha256sums = SKIP
+
+pkgname = omen-fan-git

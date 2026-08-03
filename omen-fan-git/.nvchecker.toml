@@ -1,0 +1,4 @@
+[omen-fan-git]
+source = "git"
+git = "https://github.com/AksharLeo/omen-fan.git"
+branch = "main"
