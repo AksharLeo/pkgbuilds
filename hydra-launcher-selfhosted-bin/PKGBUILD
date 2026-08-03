@@ -3,8 +3,8 @@
 pkgname=hydra-launcher-selfhosted-bin
 pkgver=4.0.6_rev1
 _pkgver=${pkgver/_/-}
-pkgrel=1
-pkgdesc="Hydra Launcher (Selfhosted Fork) - An open-source gaming platform"
+pkgrel=2
+pkgdesc="Hydra Launcher (Fork with selfhosted backend support) - An open-source gaming platform"
 arch=('x86_64')
 url="https://github.com/AksharLeo/hydra"
 license=('MIT')
@@ -56,11 +56,16 @@ package() {
     install -d "${pkgdir}/usr/bin"
     ln -s /opt/HydraSelfhosted/hydralauncher-selfhosted "${pkgdir}/usr/bin/hydralauncher-selfhosted"
     
+    # Rename doc folder
+    if [ -d "${pkgdir}/usr/share/doc/hydralauncher" ]; then
+        mv "${pkgdir}/usr/share/doc/hydralauncher" "${pkgdir}/usr/share/doc/hydralauncher-selfhosted"
+    fi
+    
     # Update the desktop file if it exists
     if [ -f "${pkgdir}/usr/share/applications/hydralauncher.desktop" ]; then
         mv "${pkgdir}/usr/share/applications/hydralauncher.desktop" "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
         sed -i 's/Exec=\/opt\/Hydra\/hydralauncher/Exec=\/usr\/bin\/hydralauncher-selfhosted/' "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
-        sed -i 's/Name=Hydra/Name=Hydra Selfhosted/' "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
+        sed -i 's/Name=Hydra/Name=Hydra (Selfhosted Backend)/' "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
         sed -i 's/Icon=hydralauncher/Icon=hydralauncher-selfhosted/' "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
     fi
     

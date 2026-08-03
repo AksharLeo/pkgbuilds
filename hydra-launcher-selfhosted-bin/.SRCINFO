@@ -1,7 +1,7 @@
 pkgbase = hydra-launcher-selfhosted-bin
-	pkgdesc = Hydra Launcher (Selfhosted Fork) - An open-source gaming platform
+	pkgdesc = Hydra Launcher (Fork with selfhosted backend support) - An open-source gaming platform
 	pkgver = 4.0.6_rev1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/AksharLeo/hydra
 	arch = x86_64
 	license = MIT
