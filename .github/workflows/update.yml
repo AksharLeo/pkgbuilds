@@ -32,6 +32,10 @@ jobs:
           chown -R builduser:builduser .
           
           su - builduser -c "
+          git config --global --add safe.directory '*'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          
           cd $GITHUB_WORKSPACE
           for pkg in */ ; do
             pkg=\${pkg%/}
@@ -68,6 +72,8 @@ jobs:
             fi
           done
           "
+          
+          chown -R root:root .
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
