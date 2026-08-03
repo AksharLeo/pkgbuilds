@@ -26,9 +26,8 @@ jobs:
 
       - name: Check and Update Packages
         run: |
-          useradd -m builduser
-          passwd -d builduser
-          echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+          # Patch makepkg to allow running as root in this disposable CI container
+          sed -i 's/EUID == 0/EUID == -1/' /usr/bin/makepkg
           
           cd $GITHUB_WORKSPACE
           for pkg in */ ; do
@@ -52,14 +51,8 @@ jobs:
                 sed -i "s/^pkgver=.*/pkgver=$safe_version/" PKGBUILD
                 sed -i "s/^pkgrel=.*/pkgrel=1/" PKGBUILD
                 
-                # Give builduser ownership of just this package folder so it can build
-                chown -R builduser:builduser $GITHUB_WORKSPACE/$pkg
-                
-                # Only run the arch-specific build tools as builduser!
-                su - builduser -c "cd $GITHUB_WORKSPACE/$pkg && updpkgsums && makepkg --printsrcinfo > .SRCINFO"
-                
-                # Revert ownership of the package folder back to root
-                chown -R root:root $GITHUB_WORKSPACE/$pkg
+                updpkgsums
+                makepkg --printsrcinfo > .SRCINFO
                 
                 true_version=$(awk -F ' = ' '/^\s*pkgver =/ {print $2; exit}' .SRCINFO)
                 if [ ! -z "$true_version" ]; then
