@@ -1,9 +1,9 @@
 # Maintainer: aksharleo
 
 pkgname=hydra-launcher-selfhosted-bin
-pkgver=4.0.6_rev1
+pkgver=4.0.6_rev2
 _pkgver=${pkgver/_/-}
-pkgrel=2
+pkgrel=1
 pkgdesc="Hydra Launcher (Fork with selfhosted backend support) - An open-source gaming platform"
 arch=('x86_64')
 url="https://github.com/AksharLeo/hydra"
@@ -40,7 +40,7 @@ depends=('alsa-lib'
 options=('!strip')
 source=("${url}/releases/download/v${_pkgver}/hydralauncher_${_pkgver}_amd64.deb"
         "${pkgname}-LICENSE::${url}/raw/refs/tags/v${_pkgver}/LICENSE")
-sha256sums=('151cae4b27f5ef6a52700ed58b6e4dc2a81094483d563063b0ff0fca6ad6af2f'
+sha256sums=('6031940544fca61a9fcafbfd976b30b86f47d6fec3229a553acc449d0c31378f'
             '32619612c2e0223e86c4908747ec14bef64c3c423fee80910c1aa944769b66f9')
 
 package() {
