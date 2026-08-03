@@ -38,5 +38,5 @@ paru -Sy
 
 You can now seamlessly install any package from this repository! For example:
 ```bash
-paru -S archleo-repo/omen-fan-git
+paru -S archleo-repo/hydra-launcher-selfhosted-bin
 ```
