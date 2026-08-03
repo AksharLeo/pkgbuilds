@@ -2,7 +2,7 @@
 # Maintainers: XenHat <me at xenh.at>, luni3359
 pkgname=moonlight-qt-bin
 pkgver=6.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="moonlight-qt bin from appimage"
 arch=('x86_64')
 url="https://moonlight-stream.org"
@@ -46,4 +46,5 @@ package() {
 	# install -m644 "squashfs-root/usr"
 	install -d "$pkgdir/usr/share/icons/"
 	cp -r squashfs-root/usr/share/icons/hicolor/ "$pkgdir/usr/share/icons/"
+	chmod -R u=rwX,go=rX "$pkgdir/usr/share/icons/" 2>/dev/null || true
 }
