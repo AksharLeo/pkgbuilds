@@ -1,4 +1,5 @@
-# Maintainer: csicar
+# Maintainer: aksharleo
+# Contributor: csicar
 # Contributor: csicar
 # Based on: https://github.com/yochananmarqos/pkgbuilds/blob/master/fx_cast-bin/PKGBUILD
 pkgname=fx_cast-bin

@@ -1,4 +1,5 @@
-# Maintainer: creations
+# Maintainer: aksharleo
+# Contributor: creations
 pkgname=equicord-installer-bin
 _pkgname=equilotlcli
 pkgver=2.2.6

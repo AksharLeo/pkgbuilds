@@ -1,4 +1,5 @@
-# Maintainer: Luke Featherston <lukefeatherston1223 at gmail dot com>
+# Maintainer: aksharleo
+# Contributor: Luke Featherston <lukefeatherston1223 at gmail dot com>
 pkgname=gearlever
 pkgver=4.5.5
 pkgrel=1

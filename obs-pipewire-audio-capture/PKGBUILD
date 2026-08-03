@@ -1,4 +1,5 @@
-# Maintainer: Frederik “Freso” S. Olesen <freso.dk@gmail.com>
+# Maintainer: aksharleo
+# Contributor: Frederik “Freso” S. Olesen <freso.dk@gmail.com>
 # Contributor: Loewetiger <loewetiger at tuta dot io>
 
 pkgname=obs-pipewire-audio-capture

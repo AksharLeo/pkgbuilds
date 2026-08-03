@@ -1,4 +1,5 @@
-# Maintainer: Burak Seckin <rectfc@gmail.com>
+# Maintainer: aksharleo
+# Contributor: Burak Seckin <rectfc@gmail.com>
 
 pkgname=sidra-bin
 pkgver=0.3.5

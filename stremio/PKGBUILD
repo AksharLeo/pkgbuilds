@@ -1,4 +1,5 @@
-# Maintainer: Daniel Bermond <dbermond@archlinux.org>
+# Maintainer: aksharleo
+# Contributor: Daniel Bermond <dbermond@archlinux.org>
 
 pkgname=stremio
 pkgver=4.4.183
