@@ -1,7 +1,7 @@
 pkgname=omen-fan-git
 pkgver=r1.0000000
 pkgrel=1
-pkgdesc="Utility and daemon to control fans in HP Omen laptops"
+pkgdesc="Utility and daemon to control fans in HP Omen laptops (includes omen-fan-mode for profile switching)"
 arch=('any')
 url="https://github.com/alou-S/omen-fan"
 license=('GPL3')

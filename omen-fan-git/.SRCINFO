@@ -1,5 +1,5 @@
 pkgbase = omen-fan-git
-	pkgdesc = Utility and daemon to control fans in HP Omen laptops
+	pkgdesc = Utility and daemon to control fans in HP Omen laptops (includes omen-fan-mode for profile switching)
 	pkgver = r1.0000000
 	pkgrel = 1
 	url = https://github.com/alou-S/omen-fan
