@@ -3,8 +3,8 @@
 # Contributor: csicar
 # Based on: https://github.com/yochananmarqos/pkgbuilds/blob/master/fx_cast-bin/PKGBUILD
 pkgname=fx_cast-bin
-pkgver=0.3.0
-pkgrel=3
+pkgver=0.3.1
+pkgrel=1
 pkgdesc="Implementation of the Google Cast Chrome Sender SDK within Firefox "
 arch=('x86_64')
 url="https://hensm.github.io/fx_cast/"
