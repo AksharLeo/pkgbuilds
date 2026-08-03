@@ -1,0 +1,17 @@
+# makepkg directories
+pkg/
+src/
+
+# downloaded sources and archives
+*.tar.*
+*.deb
+*.AppImage
+*.zip
+*.7z
+*.part
+
+# built packages
+*.pkg.tar.*
+
+# logs
+*.log
