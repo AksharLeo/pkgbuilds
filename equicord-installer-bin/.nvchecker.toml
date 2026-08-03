@@ -1,0 +1,5 @@
+[equicord-installer-bin]
+source = "github"
+github = "Equicord/Equilotl"
+use_max_tag = true
+prefix = "v"

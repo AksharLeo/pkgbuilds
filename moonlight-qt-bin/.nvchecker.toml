@@ -1,0 +1,5 @@
+[moonlight-qt-bin]
+source = "github"
+github = "moonlight-stream/moonlight-qt"
+use_max_tag = true
+prefix = "v"

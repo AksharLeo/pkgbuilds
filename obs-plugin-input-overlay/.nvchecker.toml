@@ -1,0 +1,4 @@
+[obs-plugin-input-overlay]
+source = "github"
+github = "univrsal/input-overlay"
+use_max_tag = true

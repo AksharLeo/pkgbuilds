@@ -1,0 +1,4 @@
+[sidra-bin]
+source = "github"
+github = "wimpysworld/sidra"
+use_max_tag = true

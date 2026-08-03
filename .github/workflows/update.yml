@@ -1,0 +1,70 @@
+name: Update PKGBUILDs
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-packages:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:base-devel
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm git jq nvchecker pacman-contrib
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Check and Update Packages
+        run: |
+          useradd -m builduser
+          passwd -d builduser
+          echo 'builduser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+          chown -R builduser:builduser .
+          
+          su - builduser -c "
+          cd $GITHUB_WORKSPACE
+          for pkg in */ ; do
+            pkg=\${pkg%/}
+            if [ -f \"\$pkg/.nvchecker.toml\" ]; then
+              echo \"Checking \$pkg...\"
+              cd \"\$pkg\"
+              
+              result=\$(nvchecker -c .nvchecker.toml --logger json 2>/dev/null | grep '\"event\": \"updated\"' || true)
+              
+              if [ ! -z \"\$result\" ]; then
+                new_version=\$(echo \"\$result\" | jq -r '.version')
+                echo \"Updating \$pkg to \$new_version\"
+                
+                sed -i \"s/^pkgver=.*/pkgver=\$new_version/\" PKGBUILD
+                sed -i \"s/^pkgrel=.*/pkgrel=1/\" PKGBUILD
+                
+                updpkgsums
+                makepkg --printsrcinfo > .SRCINFO
+                
+                git add PKGBUILD .SRCINFO
+                git commit -m \"upg(\$pkg): update to \$new_version\"
+                
+                nvtake -c .nvchecker.toml \$pkg
+              fi
+              cd ..
+            fi
+          done
+          "
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "Automated Package Updates"
+          body: "Automated package updates by nvchecker."
+          branch: "auto-updates"
+          delete-branch: true

@@ -1,0 +1,5 @@
+[fx_cast-bin]
+source = "github"
+github = "hensm/fx_cast"
+use_max_tag = true
+prefix = "v"

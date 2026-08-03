@@ -1,0 +1,4 @@
+[qt5-styleplugins]
+source = "github"
+github = "qt/qtstyleplugins"
+use_max_tag = true

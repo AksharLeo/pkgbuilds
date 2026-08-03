@@ -1,0 +1,5 @@
+[dwarfs-bin]
+source = "github"
+github = "mhx/dwarfs"
+use_max_tag = true
+prefix = "v"

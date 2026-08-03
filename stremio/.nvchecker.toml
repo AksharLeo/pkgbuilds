@@ -1,0 +1,5 @@
+[stremio]
+source = "github"
+github = "Stremio/stremio-shell"
+use_max_tag = true
+prefix = "v"
