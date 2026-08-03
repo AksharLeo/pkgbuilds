@@ -1,0 +1,5 @@
+[betterdiscordctl]
+source = "github"
+github = "bb010g/betterdiscordctl"
+use_max_tag = true
+prefix = "v"
