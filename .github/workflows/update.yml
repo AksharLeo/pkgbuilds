@@ -67,7 +67,7 @@ jobs:
                 fi
                 
                 git add PKGBUILD .SRCINFO
-                git commit -m "upg($pkg): update to $new_version"
+                git commit -m "upg($pkg): update to $new_version" || echo "No changes to commit"
                 
                 nvtake -c .nvchecker.toml $pkg
               fi
