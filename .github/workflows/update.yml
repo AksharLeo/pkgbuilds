@@ -20,9 +20,15 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --system user.name "github-actions[bot]"
-          git config --system user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --system --add safe.directory "*"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global --add safe.directory "*"
+          
+          # makepkg maliciously overrides GIT_CONFIG_SYSTEM to point to this directory
+          # and points GIT_CONFIG_GLOBAL to /dev/null to intentionally blind Git.
+          # We must inject our safe.directory directly into makepkg's secret config file!
+          mkdir -p /etc/makepkg.d
+          echo -e "[safe]\n\tdirectory = *" > /etc/makepkg.d/gitconfig
 
       - name: Check and Update Packages
         run: |
