@@ -1,0 +1,78 @@
+# Maintainer: aksharleo
+
+pkgname=hydra-launcher-selfhosted-bin
+pkgver=4.0.6_rev1
+_pkgver=${pkgver/_/-}
+pkgrel=1
+pkgdesc="Hydra Launcher (Selfhosted Fork) - An open-source gaming platform"
+arch=('x86_64')
+url="https://github.com/AksharLeo/hydra"
+license=('MIT')
+provides=("hydra-launcher-selfhosted")
+depends=('alsa-lib'
+         'at-spi2-core'
+         'bash'
+         'cairo'
+         'dbus'
+         'expat'
+         'gcc-libs'
+         'gdk-pixbuf2'
+         'glib2'
+         'glibc'
+         'gtk3'
+         'hicolor-icon-theme'
+         'libcups'
+         'libdrm'
+         'libx11'
+         'libxcb'
+         'libxcomposite'
+         'libxdamage'
+         'libxext'
+         'libxfixes'
+         'libxkbcommon'
+         'libxrandr'
+         'libxrender'
+         'mesa'
+         'nspr'
+         'nss'
+         'pango'
+         'zlib')
+options=('!strip')
+source=("${url}/releases/download/v${_pkgver}/hydralauncher_${_pkgver}_amd64.deb"
+        "${pkgname}-LICENSE::${url}/raw/refs/tags/v${_pkgver}/LICENSE")
+sha256sums=('151cae4b27f5ef6a52700ed58b6e4dc2a81094483d563063b0ff0fca6ad6af2f'
+            '32619612c2e0223e86c4908747ec14bef64c3c423fee80910c1aa944769b66f9')
+
+package() {
+    bsdtar -xf data.tar.xz -C "${pkgdir}" --no-same-permissions
+    
+    # Rename the installation directory so it doesn't conflict with official Hydra
+    mv "${pkgdir}/opt/Hydra" "${pkgdir}/opt/HydraSelfhosted"
+    
+    # Rename the main executable
+    mv "${pkgdir}/opt/HydraSelfhosted/hydralauncher" "${pkgdir}/opt/HydraSelfhosted/hydralauncher-selfhosted"
+    
+    # Create symlink
+    install -d "${pkgdir}/usr/bin"
+    ln -s /opt/HydraSelfhosted/hydralauncher-selfhosted "${pkgdir}/usr/bin/hydralauncher-selfhosted"
+    
+    # Update the desktop file if it exists
+    if [ -f "${pkgdir}/usr/share/applications/hydralauncher.desktop" ]; then
+        mv "${pkgdir}/usr/share/applications/hydralauncher.desktop" "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
+        sed -i 's/Exec=\/opt\/Hydra\/hydralauncher/Exec=\/usr\/bin\/hydralauncher-selfhosted/' "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
+        sed -i 's/Name=Hydra/Name=Hydra Selfhosted/' "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
+        sed -i 's/Icon=hydralauncher/Icon=hydralauncher-selfhosted/' "${pkgdir}/usr/share/applications/hydralauncher-selfhosted.desktop"
+    fi
+    
+    # Rename icons
+    if [ -d "${pkgdir}/usr/share/icons/hicolor" ]; then
+        find "${pkgdir}/usr/share/icons/hicolor" -name "hydralauncher.png" | while read -r icon; do
+            mv "$icon" "${icon/hydralauncher.png/hydralauncher-selfhosted.png}"
+        done
+    fi
+    if [ -f "${pkgdir}/usr/share/pixmaps/hydralauncher.png" ]; then
+        mv "${pkgdir}/usr/share/pixmaps/hydralauncher.png" "${pkgdir}/usr/share/pixmaps/hydralauncher-selfhosted.png"
+    fi
+    
+    install -Dm644 "${pkgname}-LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

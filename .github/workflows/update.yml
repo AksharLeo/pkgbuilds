@@ -43,9 +43,11 @@ jobs:
               
               if [ ! -z \"\$result\" ]; then
                 new_version=\$(echo \"\$result\" | jq -r '.version')
-                echo \"Updating \$pkg to \$new_version\"
+                # Pacman forbids hyphens in pkgver. Replace them with underscores.
+                safe_version=\${new_version//-/_}
+                echo \"Updating \$pkg to \$safe_version\"
                 
-                sed -i \"s/^pkgver=.*/pkgver=\$new_version/\" PKGBUILD
+                sed -i \"s/^pkgver=.*/pkgver=\$safe_version/\" PKGBUILD
                 sed -i \"s/^pkgrel=.*/pkgrel=1/\" PKGBUILD
                 
                 updpkgsums
