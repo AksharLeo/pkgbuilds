@@ -47,6 +47,13 @@ jobs:
               
               if [ ! -z \"\$result\" ]; then
                 new_version=\$(echo \"\$result\" | jq -r '.version')
+                
+                # If this package uses the AUR backend, nvchecker includes the -pkgrel.
+                # We want to strip the -pkgrel off automatically so it doesn't break future packages!
+                if grep -q 'source = \"aur\"' .nvchecker.toml; then
+                  new_version=\${new_version%-*}
+                fi
+                
                 # Pacman forbids hyphens in pkgver. Replace them with underscores.
                 safe_version=\${new_version//-/_}
                 echo \"Updating \$pkg to \$safe_version\"
