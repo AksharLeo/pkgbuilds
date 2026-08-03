@@ -3,7 +3,7 @@ pkgver=r1.0000000
 pkgrel=1
 pkgdesc="Utility and daemon to control fans in HP Omen laptops"
 arch=('any')
-url="https://github.com/AksharLeo/omen-fan"
+url="https://github.com/alou-S/omen-fan"
 license=('GPL3')
 depends=(
     'python'
@@ -14,8 +14,14 @@ depends=(
 makedepends=('git')
 backup=('etc/omen-fan/config.toml')
 
-source=("git+$url.git")
-sha256sums=('SKIP')
+source=("git+$url.git"
+        "omen-fan-mode"
+        "silent.toml"
+        "performance.toml")
+sha256sums=('SKIP'
+            'b41bf881e9aee25ab8c3f616653d38663db06bff31748085463a5ec44ad9d5fb'
+            'b04c709c232a9f1f2987ba9ce98a977c3fbc8c7df280323e37bff32dd94af5ed'
+            'e278c6f2314cd0213bd380bb0d3d5cd36e65594a5ff4324d5747b12fb9a705fc')
 
 pkgver() {
     cd "$srcdir/omen-fan"
@@ -30,18 +36,18 @@ package() {
     # Install executables
     install -Dm755 omen-fan.py "$pkgdir/usr/bin/omen-fan"
     install -Dm755 omen-fand.py "$pkgdir/usr/bin/omen-fand"
-    install -Dm755 omen-fan-mode "$pkgdir/usr/bin/omen-fan-mode"
+    install -Dm755 "$srcdir/omen-fan-mode" "$pkgdir/usr/bin/omen-fan-mode"
 
     # Install profiles
-    install -Dm644 silent.toml "$pkgdir/etc/omen-fan/silent.toml"
-    install -Dm644 performance.toml "$pkgdir/etc/omen-fan/performance.toml"
+    install -Dm644 "$srcdir/silent.toml" "$pkgdir/etc/omen-fan/silent.toml"
+    install -Dm644 "$srcdir/performance.toml" "$pkgdir/etc/omen-fan/performance.toml"
 
     # Documentation
     install -Dm644 README.md \
         "$pkgdir/usr/share/doc/$pkgname/README.md"
 
     # Default configuration
-    install -Dm644 performance.toml \
+    install -Dm644 "$srcdir/performance.toml" \
         "$pkgdir/etc/omen-fan/config.toml"
 
     # systemd service

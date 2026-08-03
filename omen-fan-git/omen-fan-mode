@@ -1,0 +1,30 @@
+#!/bin/bash
+
+PROFILES_DIR="/etc/omen-fan"
+CONFIG_FILE="/etc/omen-fan/config.toml"
+
+if [[ -z "$1" ]]; then
+    echo "Usage: omen-fan-mode <profile>"
+    echo "Available profiles:"
+    ls -1 "$PROFILES_DIR"/*.toml | grep -v 'config.toml' | xargs -n 1 basename | sed 's/\.toml//'
+    exit 1
+fi
+
+MODE="$1"
+PROFILE_FILE="${PROFILES_DIR}/${MODE}.toml"
+
+if [[ ! -f "$PROFILE_FILE" ]]; then
+    echo "Error: Profile '$MODE' not found at $PROFILE_FILE"
+    exit 1
+fi
+
+# Auto-elevate to root if not already
+if [[ "$EUID" -ne 0 ]]; then
+    echo "Elevating privileges..."
+    exec sudo "$0" "$@"
+fi
+
+cp "$PROFILE_FILE" "$CONFIG_FILE"
+systemctl restart omen-fan
+
+echo "Successfully switched Omen Fan to '$MODE' mode!"
