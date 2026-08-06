@@ -1,7 +1,7 @@
 # Maintainer: aksharleo
 # Contributor: italoghost <eduprodive at posteo dot me>
 pkgname=bb_launcher-bin
-pkgver=16.05
+pkgver=16.06
 _pkgname=bb_launcher
 _pkgid=BB_Launcher
 pkgrel=1
@@ -28,7 +28,7 @@ _appimage=${_pkgid}-qt-Downloader.AppImage
 _archive=${pkgver}-${_appimage}
 noextract=("${_appimage}")
 source=(${pkgver}-${_appimage}::${url}/releases/download/Release${pkgver}/${_appimage})
-sha256sums=('87d4c15290c8f10aaacaef7d65c0417118b1b94f1c35ab524ba2d259ac51db54')
+sha256sums=('2e4ee41a2037156d26ca085427317b8dcc3e7eb347af149176046ddf136d4b95')
 
 prepare() {
     chmod +x "${_archive}"
