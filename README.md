@@ -11,7 +11,7 @@ The initial `PKGBUILD` files were pulled directly from the [Arch User Repository
 
 Instead of waiting for AUR maintainers to update their packages, this repository uses a **GitHub Actions workflow** (powered by `nvchecker`) to automatically monitor the original upstream sources (like GitHub releases or official websites) for new versions. 
 
-*(Note: A small handful of closed-source applications like `typora`, `furmark`, and `antigravity` do still use the AUR as a "version oracle" to detect when a new update is released, since they don't have standard GitHub releases. However, the actual app downloads still come directly from the official developers' servers!)* 
+*(Note: A small handful of closed-source applications like `typora` and `furmark` do still use the AUR as a "version oracle" to detect when a new update is released, since they don't have standard GitHub releases. Other packages, like `antigravity`, scrape their official websites directly. In all cases, the actual app downloads come directly from the official developers' servers!)*
 
 When an upstream update is detected, the workflow automatically:
 1. Bumps the `pkgver`
