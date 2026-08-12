@@ -1,4 +1,4 @@
 [antigravity]
-source = "aur"
-aur = "antigravity"
-strip_release = true
+source = "regex"
+url = "https://antigravity.google/download"
+regex = "antigravity-hub/([0-9.]+)-"

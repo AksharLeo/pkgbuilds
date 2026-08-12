@@ -66,6 +66,15 @@ jobs:
                   sed -i "s/^pkgver=.*/pkgver=$safe_version/" PKGBUILD
                   sed -i "s/^pkgrel=.*/pkgrel=1/" PKGBUILD
                   
+                  if grep -q '^_build=' PKGBUILD; then
+                    if [ "$pkg" == "antigravity" ]; then
+                      new_build=$(curl -sL --compressed https://antigravity.google/download | grep -o "antigravity-hub/$new_version-[0-9]*" | head -n 1 | awk -F- '{print $NF}')
+                      if [ -n "$new_build" ]; then
+                        sed -i "s/^_build=.*/_build=$new_build/" PKGBUILD
+                      fi
+                    fi
+                  fi
+                  
                   updpkgsums
                   makepkg --printsrcinfo > .SRCINFO
                   
