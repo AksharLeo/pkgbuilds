@@ -1,0 +1,56 @@
+# Maintainer: aksharleo
+
+pkgname=hydra-selfhosted-client-bin
+pkgver=4.1.1_beta.1
+_pkgver=${pkgver/_/-}
+pkgrel=1
+pkgdesc="Hydra Self-Hosted - An open-source gaming platform (Self-hosted backend support)"
+arch=('x86_64')
+url="https://github.com/AksharLeo/hydra-client"
+license=('MIT')
+provides=("hydra-selfhosted-client")
+depends=('alsa-lib'
+         'at-spi2-core'
+         'bash'
+         'cairo'
+         'dbus'
+         'expat'
+         'gcc-libs'
+         'gdk-pixbuf2'
+         'glib2'
+         'glibc'
+         'gtk3'
+         'hicolor-icon-theme'
+         'libcups'
+         'libdrm'
+         'libx11'
+         'libxcb'
+         'libxcomposite'
+         'libxdamage'
+         'libxext'
+         'libxfixes'
+         'libxkbcommon'
+         'libxrandr'
+         'libxrender'
+         'mesa'
+         'nspr'
+         'nss'
+         'pango'
+         'zlib')
+options=('!strip')
+source=("${url}/releases/download/v${_pkgver}/hydra-selfhosted-client_${_pkgver}_amd64.deb"
+        "${pkgname}-LICENSE::${url}/raw/refs/tags/v${_pkgver}/LICENSE")
+sha256sums=('610585bf6dc1913bdc98a5ad02976c4089fa0e3df50e9e79a6c4a2f5c193ea54'
+            '32619612c2e0223e86c4908747ec14bef64c3c423fee80910c1aa944769b66f9')
+
+package() {
+    bsdtar -xf data.tar.xz -C "${pkgdir}" --no-same-permissions
+    
+    install -d "${pkgdir}/usr/bin"
+    ln -s "/opt/Hydra Self-Hosted/hydra-selfhosted-client" "${pkgdir}/usr/bin/hydra-selfhosted-client"
+    
+    # Install license
+    if [ -f "${srcdir}/${pkgname}-LICENSE" ]; then
+        install -Dm644 "${srcdir}/${pkgname}-LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    fi
+}
