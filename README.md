@@ -38,5 +38,5 @@ paru -Sy
 
 You can now seamlessly install any package from this repository! For example:
 ```bash
-paru -S archleo-repo/hydra-selfhosted-client-bin
+paru -S archleo-repo/hydralauncher-gameonedev-bin
 ```

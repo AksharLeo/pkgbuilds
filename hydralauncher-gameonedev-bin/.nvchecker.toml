@@ -1,0 +1,5 @@
+[hydralauncher-gameonedev-bin]
+source = "github"
+github = "GameOneDev/hydra"
+use_max_tag = true
+prefix = "v"

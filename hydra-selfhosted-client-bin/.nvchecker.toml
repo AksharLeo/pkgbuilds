@@ -1,5 +1,0 @@
-[hydra-selfhosted-client-bin]
-source = "github"
-github = "AksharLeo/hydra-client"
-use_max_tag = true
-prefix = "v"
