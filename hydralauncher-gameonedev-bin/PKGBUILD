@@ -3,13 +3,14 @@
 pkgname=hydralauncher-gameonedev-bin
 pkgver=4.1.1
 _pkgver=${pkgver/_/-}
-pkgrel=1
+pkgrel=2
 pkgdesc="Hydra Launcher (GameOneDev Fork) - An open-source gaming platform"
 arch=('x86_64')
 url="https://github.com/GameOneDev/hydra"
 license=('MIT')
 provides=("hydralauncher" "hydra-launcher")
 conflicts=("hydralauncher" "hydralauncher-bin" "hydralauncher-git" "hydra-launcher" "hydra-launcher-bin")
+replaces=("hydralauncher" "hydralauncher-bin" "hydralauncher-git" "hydra-launcher" "hydra-launcher-bin")
 depends=('alsa-lib'
          'at-spi2-core'
          'bash'
