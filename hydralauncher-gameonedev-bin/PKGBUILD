@@ -8,8 +8,8 @@ pkgdesc="Hydra Launcher (GameOneDev Fork) - An open-source gaming platform"
 arch=('x86_64')
 url="https://github.com/GameOneDev/hydra"
 license=('MIT')
-provides=("hydralauncher")
-conflicts=("hydralauncher" "hydralauncher-bin" "hydralauncher-git")
+provides=("hydralauncher" "hydra-launcher")
+conflicts=("hydralauncher" "hydralauncher-bin" "hydralauncher-git" "hydra-launcher" "hydra-launcher-bin")
 depends=('alsa-lib'
          'at-spi2-core'
          'bash'
