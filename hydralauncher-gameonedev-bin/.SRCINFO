@@ -1,7 +1,7 @@
 pkgbase = hydralauncher-gameonedev-bin
 	pkgdesc = Hydra Launcher (GameOneDev Fork) - An open-source gaming platform
 	pkgver = 4.1.1
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/GameOneDev/hydra
 	arch = x86_64
 	license = MIT
