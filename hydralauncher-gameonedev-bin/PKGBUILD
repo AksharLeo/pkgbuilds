@@ -3,7 +3,7 @@
 pkgname=hydralauncher-gameonedev-bin
 pkgver=4.1.1
 _pkgver=${pkgver/_/-}
-pkgrel=2
+pkgrel=3
 pkgdesc="Hydra Launcher (GameOneDev Fork) - An open-source gaming platform"
 arch=('x86_64')
 url="https://github.com/GameOneDev/hydra"
