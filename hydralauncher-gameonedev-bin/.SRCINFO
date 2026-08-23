@@ -1,7 +1,7 @@
 pkgbase = hydralauncher-gameonedev-bin
 	pkgdesc = Hydra Launcher (GameOneDev Fork) - An open-source gaming platform
-	pkgver = 4.1.1
-	pkgrel = 4
+	pkgver = 4.1.2
+	pkgrel = 1
 	url = https://github.com/GameOneDev/hydra
 	arch = x86_64
 	license = MIT
@@ -46,9 +46,9 @@ pkgbase = hydralauncher-gameonedev-bin
 	replaces = hydra-launcher
 	replaces = hydra-launcher-bin
 	options = !strip
-	source = https://github.com/GameOneDev/hydra/releases/download/v4.1.1/hydralauncher-4.1.1-linux-amd64.deb
-	source = hydralauncher-gameonedev-bin-LICENSE::https://github.com/GameOneDev/hydra/raw/refs/tags/v4.1.1/LICENSE
-	sha256sums = a9a2e429f88c59026ae84145587c6845ff585133e0712b180314e4afebf2fb4e
+	source = https://github.com/GameOneDev/hydra/releases/download/v4.1.2/hydralauncher-4.1.2-linux-amd64.deb
+	source = hydralauncher-gameonedev-bin-LICENSE::https://github.com/GameOneDev/hydra/raw/refs/tags/v4.1.2/LICENSE
+	sha256sums = f2952f2707f9a3c296442adadfb82cf6548bec8ebfd71bea9eb330d4f8055728
 	sha256sums = 32619612c2e0223e86c4908747ec14bef64c3c423fee80910c1aa944769b66f9
 
 pkgname = hydralauncher-gameonedev-bin
