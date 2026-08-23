@@ -1,9 +1,9 @@
 # Maintainer: aksharleo
 
 pkgname=hydralauncher-gameonedev-bin
-pkgver=4.1.1
+pkgver=4.1.2
 _pkgver=${pkgver/_/-}
-pkgrel=4
+pkgrel=1
 pkgdesc="Hydra Launcher (GameOneDev Fork) - An open-source gaming platform"
 arch=('x86_64')
 url="https://github.com/GameOneDev/hydra"
@@ -42,7 +42,7 @@ depends=('alsa-lib'
 options=('!strip')
 source=("${url}/releases/download/v${_pkgver}/hydralauncher-${_pkgver}-linux-amd64.deb"
         "${pkgname}-LICENSE::${url}/raw/refs/tags/v${_pkgver}/LICENSE")
-sha256sums=('a9a2e429f88c59026ae84145587c6845ff585133e0712b180314e4afebf2fb4e'
+sha256sums=('f2952f2707f9a3c296442adadfb82cf6548bec8ebfd71bea9eb330d4f8055728'
             '32619612c2e0223e86c4908747ec14bef64c3c423fee80910c1aa944769b66f9')
 
 package() {
