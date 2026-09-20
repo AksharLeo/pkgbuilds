@@ -2,7 +2,7 @@
 # Contributor: creations
 pkgname=equicord-installer-bin
 _pkgname=equilotlcli
-pkgver=2.2.7
+pkgver=2.3.0
 pkgrel=1
 pkgdesc='Equilotl is the CLI Installer for Equicord'
 license=('GPL3')
