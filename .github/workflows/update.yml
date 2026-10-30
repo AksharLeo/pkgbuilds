@@ -75,8 +75,20 @@ jobs:
                     fi
                   fi
                   
-                  updpkgsums
-                  makepkg --printsrcinfo > .SRCINFO
+
+              if ! updpkgsums; then
+                echo "::warning::Skipping $pkg because checksum generation failed"
+                git checkout -- PKGBUILD .SRCINFO
+                cd ..
+                continue
+              fi
+
+              if ! makepkg --printsrcinfo > .SRCINFO; then
+                echo "::warning::Skipping $pkg because .SRCINFO generation failed"
+                git checkout -- PKGBUILD .SRCINFO
+                cd ..
+                continue
+              fi
                   
                   # Some packages might have a pkgver() function that updates the version
                   true_version=$(awk -F ' = ' '/^\s*pkgver =/ {print $2; exit}' .SRCINFO)
